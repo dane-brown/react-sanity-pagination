@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Pagination = () => {
+function Pagination() {
   const [currentPage, setCurrentPage] = useState(1);
   const [range, setRange] = useState("0...5");
   const buttons = [];
@@ -9,7 +9,7 @@ const Pagination = () => {
   const pages = Math.ceil(postsLength / postsPerPage);
 
   // Paginate Function to determine query range
-  const PaginateButton = () => {
+  const PaginateButton = props => {
     const page = this.props.page + 1;
 
     const changePage = (page, range) => {
@@ -47,6 +47,6 @@ const Pagination = () => {
       {postsLength > 1 ? <ul className="pagePagination">{buttons}</ul> : ""}
     </React.Fragment>
   );
-};
+}
 
 export default Pagination;
