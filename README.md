@@ -13,15 +13,13 @@ npm install --save react-sanity-pagination
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import MyComponent from 'react-sanity-pagination'
+import Pagination from "react-sanity-pagination";
 
 class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
+  render() {
+    return <Pagination action={fetchPosts} postsLength={postsLength} />;
   }
 }
 ```
