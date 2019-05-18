@@ -1,3 +1,5 @@
+# UNDER CONSTRUCTION - DO NOT USE *YET* ⚙️
+
 # react-sanity-pagination
 
 > React pagination for Sanity.io
