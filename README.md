@@ -13,15 +13,32 @@ npm install --save react-sanity-pagination
 ## Usage
 
 ```jsx
-import React, { Component } from "react";
+import React, { useState } from "react";
 
+// Import Pagination
 import Pagination from "react-sanity-pagination";
 
-class Example extends Component {
-  render() {
-    return <Pagination action={fetchPosts} postsLength={postsLength} />;
+function Example() {
+  const [paginationItems, setPaginationItems] = useState([])
+  // Your action function returns two props {page, range}.
+  // 1 - Page is the current active page.
+  // 2 - Range is the range used in the Sanity.io selective query.
+  const action = (page, range) => {
+    // This function will be called when pagination is in action, using Sanity.io selectives you query your new data and update your state
+    const query = `*[_type == "post"] | order(_createdAt desc) {_id, body, mainImage, slug, title, category}[${range}]`;
+    // Use Sanity to fetch new data and then update your state!
+    sanityClient.fetch(query).then(res => setPaginationItems(res));
   }
+  return (
+    // In order for pagination to work you need to provide 3 props.
+    // 1 - Action which is stated prior.
+    // 2 - postsPerPage - how many posts you want per page
+    // 3 - postsLength - the length of your data that is going to be paginated. This can be done with Array.length
+    <Pagination action={action} postsPerPage={3} postsLength={paginationItems.length} />;
+  )
 }
+
+export default Example;
 ```
 
 ## License

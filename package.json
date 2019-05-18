@@ -1,13 +1,13 @@
 {
   "name": "react-sanity-pagination",
-  "version": "1.0.2",
-  "description": "React pagination for Sanity.io",
+  "version": "1.1.1",
+  "description": "🌵React pagination for Sanity.io",
   "author": "dane-brown",
   "license": "MIT",
   "repository": "",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
+  "main": "dist/pagination.js",
+  "module": "dist/pagination.es.js",
+  "jsnext:main": "dist/pagination.es.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -16,7 +16,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
-    "start": "rollup -c -w",
+    "start": "react-scripts start && rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
