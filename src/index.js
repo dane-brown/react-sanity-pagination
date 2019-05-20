@@ -3,13 +3,32 @@ import ReactDOM from "react-dom";
 import Pagination from "./pagination";
 
 const App = () => {
-  const action = () => {
-    console.log("working");
+  const action = (page, range) => {
+    console.log("working", page, range);
   };
   return (
     <div>
-      This is the app <span />
-      <Pagination action={action} postsPerPage={3} postsLength={30} />
+      <Pagination
+        action={action}
+        postsPerPage={3}
+        postsLength={65}
+        nextButton={true}
+        nextButtonLabel={""}
+        prevButton={true}
+        prevButtonLabel={""}
+        jumpStartButton={true}
+        jumpStartButtonLabel={""}
+        jumpFiveForwardButton={true}
+        jumpFiveForwardButtonLabel={""}
+        jumpTenForwardButton={true}
+        jumpTenForwardButtonLabel={""}
+        jumpFiveBackwardButton={true}
+        jumpFiveBackwardButtonLabel={""}
+        jumpTenBackwardButton={true}
+        jumpTenBackwardButtonLabel={""}
+        jumpEndButton={true}
+        jumpEndButtonLabel={""}
+      />
     </div>
   );
 };
