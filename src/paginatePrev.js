@@ -5,7 +5,7 @@ const PaginatePrev = props => {
     <React.Fragment>
       {props.prevButton === true ? (
         <button
-          className="paginationPrev"
+          className="paginateButton paginationPrev"
           disabled={props.currentPage === 1 ? "disabled" : ""}
           onClick={() => props.changePage(props.currentPage - 1)}
         >

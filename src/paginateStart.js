@@ -5,7 +5,7 @@ const PaginateStart = props => {
     <React.Fragment>
       {props.jumpStartButton === true ? (
         <button
-          className="paginationStart"
+          className="paginateButton paginationStart"
           disabled={props.currentPage === 1 ? "disabled" : ""}
           onClick={() => props.changePage(1)}
         >
