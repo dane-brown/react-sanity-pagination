@@ -5,6 +5,7 @@ const PaginateEnd = props => {
     <React.Fragment>
       {props.jumpEndButton === true ? (
         <button
+          className="paginationEnd"
           disabled={props.currentPage === props.pages ? "disabled" : ""}
           onClick={() => props.changePage(props.pages)}
         >

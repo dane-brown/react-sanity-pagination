@@ -5,6 +5,7 @@ const PaginateFiveBackward = props => {
     <React.Fragment>
       {props.jumpFiveBackwardButton === true ? (
         <button
+          className="paginationFiveBackward"
           disabled={props.currentPage < 5 ? "disabled" : ""}
           onClick={() =>
             props.changePage(

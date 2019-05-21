@@ -5,6 +5,7 @@ const PaginateNext = props => {
     <React.Fragment>
       {props.nextButton === true ? (
         <button
+          className="paginationNext"
           disabled={props.currentPage === props.pages ? "disabled" : ""}
           onClick={() => props.changePage(props.currentPage + 1)}
         >
