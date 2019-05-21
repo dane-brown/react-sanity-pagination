@@ -33,7 +33,7 @@ function Example() {
   const [dataLength, setDataLength] = useState(0);
   const [paginationItems, setPaginationItems] = useState([])
 
-  // Fetch your initial Data
+  // Fetch all your data initially
   useEffect(() => {
     sanityClient
       .fetch('*[_type == "dummyData"] | order(_createdAt) ')
@@ -48,7 +48,7 @@ function Example() {
   // 2 - Range is the range used in the Sanity.io selective query.
   const action = (page, range) => {
     // This function will be called on paginate, using Sanity.io selectives you query your new data and update your state
-    sanityClient.fetch(`*[_type == "dummyData"] | order(_createdAt) [${range}]`).then(res => setData(res));
+    sanityClient.fetch(`*[_type == "dummyData"] | order(_createdAt) [${range}]`).then(res => setPaginationItems(res));
   }
   return (
     // In order for pagination to work you need to provide 3 props.
