@@ -3,6 +3,7 @@
 > React pagination for Sanity.io
 
 [![NPM](https://img.shields.io/npm/v/react-sanity-pagination.svg)](https://www.npmjs.com/package/react-sanity-pagination) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+<a href="https://npmjs.com/react-sanity-pagination"><img src="https://img.shields.io/npm/dt/react-sanity-pagination.svg" alt="NPM Total Downloads"></a>
 
 ## Install
 
@@ -12,7 +13,7 @@ npm install --save react-sanity-pagination
 
 ## Prerequisite
 
-This package requires the use of Sanity.io, the whole concept of how pagination works is using sanity's selective querying. EG: `sanity.fetch(`\*[\_type == "blog"][0...10]`)`
+This package requires the use of Sanity.io, the whole concept of how pagination works is using sanity's selective querying. EG: `sanity.fetch('[_type == "blog"][0...10]')`
 
 ## Demo
 
