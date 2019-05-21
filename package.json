@@ -1,6 +1,6 @@
 {
   "name": "react-sanity-pagination",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "🌵React pagination for Sanity.io",
   "author": "dane-brown",
   "homepage": "https://github.com/dane-brown/react-sanity-pagination",
@@ -71,5 +71,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
 }

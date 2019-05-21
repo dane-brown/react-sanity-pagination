@@ -10,8 +10,9 @@ const App = () => {
   return (
     <div>
       <Pagination
+        paginationStyle={"default"}
         action={action}
-        postsPerPage={3}
+        postsPerPage={10}
         postsLength={65}
         nextButton={true}
         nextButtonLabel={""}

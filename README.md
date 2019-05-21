@@ -55,7 +55,7 @@ function Example() {
     // 1 - Action which is stated prior.
     // 2 - postsPerPage - how many posts you want per page
     // 3 - postsLength - the length of your data that is going to be paginated. This can be done with Array.length
-    <Pagination action={action} postsPerPage={postsPerPage} postsLength={dataLength} />;
+    <Pagination style={"default"} action={action} postsPerPage={postsPerPage} postsLength={dataLength} />;
   )
 }
 
@@ -64,27 +64,28 @@ export default Example;
 
 ## Props
 
-| Name                        | Required | Type     |
-| --------------------------- | -------- | -------- |
-| action                      | Yes      | Function |
-| postsPerPage                | Yes      | Number   |
-| postsLength                 | Yes      | Number   |
-| nextButton                  | No       | Boolean  |
-| nextButtonLabel             | No       | String   |
-| prevButton                  | No       | Boolean  |
-| prevButtonLabel             | No       | String   |
-| jumpStartButton             | No       | Boolean  |
-| jumpStartButtonLabel        | No       | String   |
-| jumpEndButton               | No       | Boolean  |
-| jumpEndButtonLabel          | No       | String   |
-| jumpFiveForwardButton       | No       | Boolean  |
-| jumpFiveForwardButtonLabel  | No       | String   |
-| jumpTenForwardButton        | No       | Boolean  |
-| jumpTenForwardButtonLabel   | No       | String   |
-| jumpFiveBackwardButton      | No       | Boolean  |
-| jumpFiveBackwardButtonLabel | No       | String   |
-| jumpTenBackwardButton       | No       | Boolean  |
-| jumpTenBackwardButtonLabel  | No       | String   |
+| Name                        | Required | Type                      |
+| --------------------------- | -------- | ------------------------- |
+| action                      | Yes      | Function                  |
+| postsPerPage                | Yes      | Number                    |
+| postsLength                 | Yes      | Number                    |
+| paginationStyle             | No       | ("default", "activePage") |
+| nextButton                  | No       | Boolean                   |
+| nextButtonLabel             | No       | String                    |
+| prevButton                  | No       | Boolean                   |
+| prevButtonLabel             | No       | String                    |
+| jumpStartButton             | No       | Boolean                   |
+| jumpStartButtonLabel        | No       | String                    |
+| jumpEndButton               | No       | Boolean                   |
+| jumpEndButtonLabel          | No       | String                    |
+| jumpFiveForwardButton       | No       | Boolean                   |
+| jumpFiveForwardButtonLabel  | No       | String                    |
+| jumpTenForwardButton        | No       | Boolean                   |
+| jumpTenForwardButtonLabel   | No       | String                    |
+| jumpFiveBackwardButton      | No       | Boolean                   |
+| jumpFiveBackwardButtonLabel | No       | String                    |
+| jumpTenBackwardButton       | No       | Boolean                   |
+| jumpTenBackwardButtonLabel  | No       | String                    |
 
 ## License
 

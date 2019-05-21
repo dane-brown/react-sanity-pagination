@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import PaginatePrev from "./paginatePrev";
 import PaginateNext from "./paginateNext";
 import PaginateFiveForward from "./paginateFiveForward";
@@ -20,12 +21,29 @@ function Pagination(props) {
   const PaginateButton = props => {
     const page = props.page;
     return (
-      <button
-        className={page === currentPage ? "active" : ""}
-        onClick={() => changePage(page, range)}
-      >
-        {page}
-      </button>
+      <React.Fragment>
+        {props.paginationStyle === "activePage" ? (
+          <React.Fragment>
+            {page === currentPage ? (
+              <button
+                className={page === currentPage ? "active" : ""}
+                onClick={() => changePage(page, range)}
+              >
+                {page}
+              </button>
+            ) : (
+              ""
+            )}
+          </React.Fragment>
+        ) : (
+          <button
+            className={page === currentPage ? "active" : ""}
+            onClick={() => changePage(page, range)}
+          >
+            {page}
+          </button>
+        )}
+      </React.Fragment>
     );
   };
 
@@ -46,7 +64,11 @@ function Pagination(props) {
   for (let i = 0; i < pages; i++) {
     buttons.push(
       <React.Fragment key={i + 1}>
-        <PaginateButton page={i + 1} action={props.action} />
+        <PaginateButton
+          page={i + 1}
+          action={props.action}
+          paginationStyle={props.paginationStyle}
+        />
       </React.Fragment>
     );
   }
@@ -118,5 +140,28 @@ function Pagination(props) {
     </React.Fragment>
   );
 }
+
+Pagination.propTypes = {
+  paginationStyle: PropTypes.string,
+  action: PropTypes.func,
+  postsPerPage: PropTypes.number,
+  postsLength: PropTypes.number,
+  nextButton: PropTypes.bool,
+  nextButtonLabel: PropTypes.string,
+  prevButton: PropTypes.bool,
+  prevButtonLabel: PropTypes.string,
+  jumpStartButton: PropTypes.bool,
+  jumpStartButtonLabel: PropTypes.string,
+  jumpFiveForwardButton: PropTypes.bool,
+  jumpFiveForwardButtonLabel: PropTypes.string,
+  jumpTenForwardButton: PropTypes.bool,
+  jumpTenForwardButtonLabel: PropTypes.string,
+  jumpFiveBackwardButton: PropTypes.bool,
+  jumpFiveBackwardButtonLabel: PropTypes.string,
+  jumpTenBackwardButton: PropTypes.bool,
+  jumpTenBackwardButtonLabel: PropTypes.string,
+  jumpEndButton: PropTypes.bool,
+  jumpEndButtonLabel: PropTypes.string
+};
 
 export default Pagination;
