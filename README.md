@@ -55,7 +55,7 @@ function Example() {
     // 1 - Action which is stated prior.
     // 2 - postsPerPage - how many posts you want per page
     // 3 - postsLength - the length of your data that is going to be paginated. This can be done with Array.length
-    <Pagination style={"default"} action={action} postsPerPage={postsPerPage} postsLength={dataLength} />;
+    <Pagination paginationStyle={"default"} action={action} postsPerPage={postsPerPage} postsLength={dataLength} />;
   )
 }
 
@@ -86,6 +86,12 @@ export default Example;
 | jumpFiveBackwardButtonLabel | No       | String                    |
 | jumpTenBackwardButton       | No       | Boolean                   |
 | jumpTenBackwardButtonLabel  | No       | String                    |
+
+## Pagination Styles
+
+  ### Default
+
+
 
 ## License
 
