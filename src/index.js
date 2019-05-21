@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Pagination from "./pagination";
+import "./themes/material.css";
 
 const App = () => {
   const action = (page, range) => {
@@ -10,7 +11,7 @@ const App = () => {
     <div>
       <Pagination
         action={action}
-        postsPerPage={10}
+        postsPerPage={3}
         postsLength={65}
         nextButton={true}
         nextButtonLabel={""}

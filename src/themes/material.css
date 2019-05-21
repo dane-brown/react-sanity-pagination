@@ -1,0 +1,62 @@
+.App {
+  margin-top: 50px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.pagePagination button {
+  display: inline-block;
+}
+
+.pagePagination {
+  width: 100%;
+  display: inline-block;
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.pagePagination button {
+  display: inline-block;
+  padding: 0 20px;
+  vertical-align: middle;
+  line-height: 45px;
+  height: 45px;
+  box-sizing: border-box;
+  border: 1px solid #dee2e6 !important;
+  cursor: pointer;
+  outline: none;
+  font-size: 15px;
+  margin: 0 0 0 -1px !important;
+  font-weight: 300;
+  transition: all 250ms ease-in;
+}
+
+.paginationContent {
+  min-height: 100px;
+  margin-top: 50px;
+  font-size: 20px;
+  color: #20232a;
+}
+
+.paginateButton {
+  line-height: 42px;
+}
+
+.pagePagination button:hover {
+  z-index: 2;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.paginateButton:disabled {
+  pointer-events: none;
+}
+
+.pagePagination button.active {
+  color: #fff;
+  background-color: #007bff;
+  border: 1px solid #007bff !important;
+}

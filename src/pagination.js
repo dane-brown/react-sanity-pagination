@@ -18,7 +18,7 @@ function Pagination(props) {
 
   // Paginate Function to determine query range
   const PaginateButton = props => {
-    const page = props.page + 1;
+    const page = props.page;
     return (
       <button
         className={page === currentPage ? "active" : ""}
@@ -44,7 +44,11 @@ function Pagination(props) {
 
   // Assign Buttons
   for (let i = 0; i < pages; i++) {
-    buttons.push(<PaginateButton page={i} key={i} action={props.action} />);
+    buttons.push(
+      <React.Fragment key={i + 1}>
+        <PaginateButton page={i + 1} action={props.action} />
+      </React.Fragment>
+    );
   }
   // Return Pagination
   return (
