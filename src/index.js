@@ -10,7 +10,7 @@ const App = () => {
     <div>
       <Pagination
         action={action}
-        postsPerPage={3}
+        postsPerPage={10}
         postsLength={65}
         nextButton={true}
         nextButtonLabel={""}
@@ -28,6 +28,7 @@ const App = () => {
         jumpTenBackwardButtonLabel={""}
         jumpEndButton={true}
         jumpEndButtonLabel={""}
+        theme={"Material"}
       />
     </div>
   );

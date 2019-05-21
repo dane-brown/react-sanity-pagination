@@ -8,6 +8,8 @@ import PaginateTenBackward from "./paginateTenBackward";
 import PaginateEnd from "./paginateEnd";
 import PaginateStart from "./paginateStart";
 
+import "./themes/material.css";
+
 function Pagination(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = props.postsPerPage;
@@ -20,12 +22,12 @@ function Pagination(props) {
   const PaginateButton = props => {
     const page = props.page + 1;
     return (
-      <li
+      <button
         className={page === currentPage ? "active" : ""}
         onClick={() => changePage(page, range)}
       >
         {page}
-      </li>
+      </button>
     );
   };
 
@@ -38,7 +40,7 @@ function Pagination(props) {
     if (page !== currentPage) {
       props.action(page, newRange);
     } else {
-      console.log("Returning nothing because already on page 🕵️‍!");
+      // Returning nothing because already on page 🕵️‍!
     }
   };
 
@@ -50,7 +52,12 @@ function Pagination(props) {
   return (
     <React.Fragment>
       {postsLength > 1 ? (
-        <ul className="pagePagination">
+        <ul
+          className={
+            "pagePagination " +
+            (props.theme === "Material" ? "material-theme" : "")
+          }
+        >
           <PaginateStart
             jumpStartButton={props.jumpStartButton}
             jumpStartButtonLabel={props.jumpStartButtonLabel}

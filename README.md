@@ -64,27 +64,28 @@ export default Example;
 
 ## Props
 
-| Name                        | Required | Type     |
-| --------------------------- | -------- | -------- |
-| action                      | Yes      | Function |
-| postsPerPage                | Yes      | Number   |
-| postsLength                 | Yes      | Number   |
-| nextButton                  | No       | Boolean  |
-| nextButtonLabel             | No       | String   |
-| prevButton                  | No       | Boolean  |
-| prevButtonLabel             | No       | String   |
-| jumpStartButton             | No       | Boolean  |
-| jumpStartButtonLabel        | No       | String   |
-| jumpEndButton               | No       | Boolean  |
-| jumpEndButtonLabel          | No       | String   |
-| jumpFiveForwardButton       | No       | Boolean  |
-| jumpFiveForwardButtonLabel  | No       | String   |
-| jumpTenForwardButton        | No       | Boolean  |
-| jumpTenForwardButtonLabel   | No       | String   |
-| jumpFiveBackwardButton      | No       | Boolean  |
-| jumpFiveBackwardButtonLabel | No       | String   |
-| jumpTenBackwardButton       | No       | Boolean  |
-| jumpTenBackwardButtonLabel  | No       | String   |
+| Name                        | Required | Type         |
+| --------------------------- | -------- | ------------ |
+| action                      | Yes      | Function     |
+| postsPerPage                | Yes      | Number       |
+| postsLength                 | Yes      | Number       |
+| nextButton                  | No       | Boolean      |
+| nextButtonLabel             | No       | String       |
+| prevButton                  | No       | Boolean      |
+| prevButtonLabel             | No       | String       |
+| jumpStartButton             | No       | Boolean      |
+| jumpStartButtonLabel        | No       | String       |
+| jumpEndButton               | No       | Boolean      |
+| jumpEndButtonLabel          | No       | String       |
+| jumpFiveForwardButton       | No       | Boolean      |
+| jumpFiveForwardButtonLabel  | No       | String       |
+| jumpTenForwardButton        | No       | Boolean      |
+| jumpTenForwardButtonLabel   | No       | String       |
+| jumpFiveBackwardButton      | No       | Boolean      |
+| jumpFiveBackwardButtonLabel | No       | String       |
+| jumpTenBackwardButton       | No       | Boolean      |
+| jumpTenBackwardButtonLabel  | No       | String       |
+| theme                       | No       | ("Material") |
 
 ## License
 
