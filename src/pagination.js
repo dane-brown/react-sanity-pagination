@@ -8,8 +8,6 @@ import PaginateTenBackward from "./paginateTenBackward";
 import PaginateEnd from "./paginateEnd";
 import PaginateStart from "./paginateStart";
 
-import "./themes/material.css";
-
 function Pagination(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = props.postsPerPage;
@@ -52,12 +50,7 @@ function Pagination(props) {
   return (
     <React.Fragment>
       {postsLength > 1 ? (
-        <ul
-          className={
-            "pagePagination " +
-            (props.theme === "Material" ? "material-theme" : "")
-          }
-        >
+        <ul className="pagePagination">
           <PaginateStart
             jumpStartButton={props.jumpStartButton}
             jumpStartButtonLabel={props.jumpStartButtonLabel}

@@ -28,7 +28,6 @@ const App = () => {
         jumpTenBackwardButtonLabel={""}
         jumpEndButton={true}
         jumpEndButtonLabel={""}
-        theme={"Material"}
       />
     </div>
   );
