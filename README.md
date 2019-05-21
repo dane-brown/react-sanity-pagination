@@ -89,9 +89,13 @@ export default Example;
 
 ## Pagination Styles
 
-  ### Default
+### Default
 
+![alt text](https://raw.githubusercontent.com/dane-brown/react-sanity-pagination/master/public/default.png)
 
+### activePage
+
+![alt text](https://raw.githubusercontent.com/dane-brown/react-sanity-pagination/master/public/activePage.png)
 
 ## License
 
