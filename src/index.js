@@ -10,9 +10,9 @@ const App = () => {
   return (
     <div>
       <Pagination
-        paginationStyle={"default"}
+        paginationStyle={"truncated"}
         action={action}
-        postsPerPage={10}
+        postsPerPage={7}
         postsLength={65}
         nextButton={true}
         nextButtonLabel={""}

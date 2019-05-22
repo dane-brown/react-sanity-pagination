@@ -20,31 +20,44 @@ function Pagination(props) {
   // Paginate Function to determine query range
   const PaginateButton = props => {
     const page = props.page;
-    return (
-      <React.Fragment>
-        {props.paginationStyle === "activePage" ? (
-          <React.Fragment>
-            {page === currentPage ? (
-              <button
-                className={page === currentPage ? "active" : ""}
-                onClick={() => changePage(page, range)}
-              >
-                {page}
-              </button>
-            ) : (
-              ""
-            )}
-          </React.Fragment>
-        ) : (
+    if (props.paginationStyle === "activePage") {
+      return (
+        <React.Fragment>
+          {page === currentPage ? (
+            <button
+              className={page === currentPage ? "active" : ""}
+              onClick={() => changePage(page, range)}
+            >
+              {page}
+            </button>
+          ) : (
+            ""
+          )}
+        </React.Fragment>
+      );
+    } else if (props.paginationStyle === "truncated") {
+      return (
+        <React.Fragment>
           <button
             className={page === currentPage ? "active" : ""}
             onClick={() => changePage(page, range)}
           >
             {page}
           </button>
-        )}
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <button
+            className={page === currentPage ? "active" : ""}
+            onClick={() => changePage(page, range)}
+          >
+            {page}
+          </button>
+        </React.Fragment>
+      );
+    }
   };
 
   const changePage = (page, range) => {
