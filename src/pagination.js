@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { updateURL } from "./helpers/index";
 import PaginatePrev from "./paginatePrev";
 import PaginateNext from "./paginateNext";
 import PaginateFiveForward from "./paginateFiveForward";
@@ -16,6 +17,18 @@ function Pagination(props) {
   const buttons = [];
   const postsLength = props.postsLength;
   const pages = Math.ceil(postsLength / postsPerPage);
+
+  // Set page if parameter is there
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.indexOf("?page=") !== -1) {
+      // console.log(url.indexOf("?page="));
+      const param = url.substring(url.indexOf("?page="));
+      const page = param.replace("?page=", "");
+      setCurrentPage(page);
+      changePage(Number(page));
+    }
+  }, []);
 
   // Paginate Function to determine query range
   const PaginateButton = props => {
@@ -48,12 +61,13 @@ function Pagination(props) {
   };
 
   const changePage = (page, range) => {
-    setCurrentPage(page);
     const firstNumber = postsPerPage * (page - 1);
     const secondNumber = firstNumber + postsPerPage;
     const newRange = `${firstNumber}...${secondNumber}`;
+    setCurrentPage(page);
     setRange(newRange);
     if (page !== currentPage) {
+      updateURL(page);
       props.action(page, newRange);
     } else {
       // Returning nothing because already on page 🕵️‍!

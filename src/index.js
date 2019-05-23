@@ -5,7 +5,7 @@ import "./themes/material.css";
 
 const App = () => {
   const action = (page, range) => {
-    console.log("working", page, range);
+    console.log("Home Action", page, range);
   };
   return (
     <div>
