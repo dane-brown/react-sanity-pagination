@@ -11,34 +11,42 @@ import PaginateEnd from "./paginateEnd";
 import PaginateStart from "./paginateStart";
 
 function Pagination(props) {
+  // Called carbon copy because I never want this to change
+  const carbonCopy = props.items;
+  // Used to reRender component
+  const [render, setRender] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = props.postsPerPage;
   const [range, setRange] = useState(`0...${postsPerPage}`);
   const buttons = [];
-  const postsLength = props.postsLength;
+  const postsLength = props.items.length;
   const pages = Math.ceil(postsLength / postsPerPage);
 
   // Set page if parameter is there
   useEffect(() => {
-    const url = window.location.href;
-    if (url.indexOf("?page=") !== -1) {
-      // console.log(url.indexOf("?page="));
-      const param = url.substring(url.indexOf("?page="));
-      const page = Number(param.replace("?page=", ""));
-
-      // Update Content
-      setTimeout(() => {
-        changePage(page);
-      }, 300);
+    if (carbonCopy.length === 0) {
+      setRender(`render_${Math.random()}`);
     }
-  }, []);
+    if (carbonCopy.length > 0) {
+      const url = window.location.href;
+      if (url.indexOf("?page=") !== -1) {
+        const param = url.substring(url.indexOf("?page="));
+        const page = Number(param.replace("?page=", ""));
+        // Update Content
+        changePage(page);
+      } else {
+        changePage(1);
+      }
+    }
+  }, [render]);
 
   // Paginate Function to determine query range
   const PaginateButton = props => {
     const page = props.page;
-    return (
-      <React.Fragment>
-        {props.paginationStyle === "activePage" ? (
+    if (props.paginationStyle === "activePage") {
+      return (
+        <React.Fragment>
           <React.Fragment>
             {page === currentPage ? (
               <button
@@ -51,28 +59,60 @@ function Pagination(props) {
               ""
             )}
           </React.Fragment>
-        ) : (
+        </React.Fragment>
+      );
+    } else if (props.paginationStyle === "centerMode") {
+      return (
+        <React.Fragment>
+          {page === currentPage ||
+          page === currentPage - 1 ||
+          page === currentPage + 1 ? (
+            <button
+              className={page === currentPage ? "active" : ""}
+              onClick={() => changePage(page, range)}
+            >
+              {page}
+            </button>
+          ) : (
+            ""
+          )}
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
           <button
             className={page === currentPage ? "active" : ""}
             onClick={() => changePage(page, range)}
           >
             {page}
           </button>
-        )}
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    }
   };
 
   const changePage = (page, range) => {
+    // Calculating Range
     const firstNumber = postsPerPage * (page - 1);
     const secondNumber = firstNumber + postsPerPage;
     const newRange = `${firstNumber}...${secondNumber}`;
+    // Returning part of object that we need
+    let itemsToReturn = [];
+    carbonCopy.forEach((item, index) => {
+      if (index >= firstNumber && index <= secondNumber - 1) {
+        itemsToReturn.push(item);
+      }
+    });
     setCurrentPage(page);
     setRange(newRange);
     if (page !== currentPage) {
       updateURL(page);
-      props.action(page, newRange);
+      // console.log(page, newRange, itemsToReturn);
+      props.action(page, newRange, itemsToReturn);
     } else {
+      // console.log(page, newRange, itemsToReturn);
+      props.action(1, newRange, itemsToReturn);
       // Returning nothing because already on page 🕵️‍!
     }
   };

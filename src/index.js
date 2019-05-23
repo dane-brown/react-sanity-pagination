@@ -4,33 +4,22 @@ import Pagination from "./pagination";
 import client from "./sanity";
 import "./themes/material.css";
 
+const itemsToSend = [];
 const App = () => {
-  const postsPerPage = 4;
-  const [dataLength, setDataLength] = useState(0);
-  const [data, setData] = useState([]);
+  const postsPerPage = 3;
+  const [items, setItems] = useState([]);
 
-  // Fetch Initial Data from Sanity
-  // Assign length & slice first range of items to your variables for initial load.
+  // Fetch your all data initially
   useEffect(() => {
-    client
-      .fetch('*[_type == "dummyData"] | order(_createdAt) ')
-      .then(res => {
-        setDataLength(res.length);
-        setData(res.slice(0, postsPerPage));
-        console.log("fetching initial");
-      })
-      .catch(err => {
-        console.error("Oh no, error occured: ", err);
-      });
+    client.fetch('*[_type == "dummyData"] | order(_createdAt) ').then(res => {
+      itemsToSend.push(...res);
+    });
   }, []);
 
   // Create your action which will be called on paginate
-  const action = (page, range) => {
-    console.log(page, range);
-    // Use the range provided to query your next set of data
-    client
-      .fetch(`*[_type == "dummyData"] | order(_createdAt) [${range}]`)
-      .then(res => setData(res));
+  const action = (page, range, items) => {
+    console.log(`Page: ${page} 📃, Range: ${range} 🚀, Items: ${items} 🌀`);
+    setItems(items);
   };
 
   return (
@@ -44,33 +33,21 @@ const App = () => {
 
       {/* Map Your Items */}
       <div className="paginationContent">
-        {data.map((item, index) => {
+        {items.map((item, index) => {
           return <div key={index}>{item.name}</div>;
         })}
       </div>
 
       {/* Props required: action, postsPerPage, postsLength */}
       <Pagination
-        paginationStyle={"default"}
+        paginationStyle={"centerMode"}
+        items={itemsToSend}
         action={action}
         postsPerPage={postsPerPage}
-        postsLength={dataLength}
         nextButton={true}
-        nextButtonLabel={""}
         prevButton={true}
-        prevButtonLabel={""}
-        jumpStartButton={true}
-        jumpStartButtonLabel={""}
-        jumpFiveForwardButton={true}
-        jumpFiveForwardButtonLabel={""}
-        jumpTenForwardButton={true}
-        jumpTenForwardButtonLabel={""}
-        jumpFiveBackwardButton={true}
-        jumpFiveBackwardButtonLabel={""}
-        jumpTenBackwardButton={true}
-        jumpTenBackwardButtonLabel={""}
-        jumpEndButton={true}
-        jumpEndButtonLabel={""}
+        nextButtonLabel={"👉🏻"}
+        prevButtonLabel={"👈🏻"}
       />
     </div>
   );

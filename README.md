@@ -11,10 +11,6 @@
 npm install --save react-sanity-pagination
 ```
 
-## Prerequisite
-
-This package requires the use of Sanity.io, the whole concept of how pagination works is using sanity's selective querying. EG: `sanity.fetch('[_type == "blog"][0...10]')`
-
 ## Demo
 
 [![Edit React Sanity Pagination 🌵](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-sanity-pagination-0pzik?fontsize=14&hidenavigation=1&view=preview)
@@ -22,70 +18,87 @@ This package requires the use of Sanity.io, the whole concept of how pagination 
 ## Basic Usage
 
 ```jsx
-import React, { useState } from "react";
-// Import sanity
-import sanityClient from './sanity';
+import React, { useState, useEffect } from "react";
 // Import Pagination
-import Pagination from "react-sanity-pagination";
+import Pagination from "./pagination";
+// Import Querying tool
+import client from "./sanity";
 
-function Example() {
+// Create an array outside of your component, this is done so the initial data never changes
+const itemsToSend = [];
+const Example = () => {
+  // Create a variable for the amount of posts you want per page
   const postsPerPage = 3;
-  const [dataLength, setDataLength] = useState(0);
-  const [paginationItems, setPaginationItems] = useState([])
+  // Create state which will be updated every time you paginate
+  const [items, setItems] = useState([]);
 
-  // Fetch all your data initially
+  // Fetch all data on load
   useEffect(() => {
-    sanityClient
-      .fetch('*[_type == "dummyData"] | order(_createdAt) ')
-      .then(res => {
-        setDataLength(res.length);
-        setPaginationItems(res.slice(0, postsPerPage));
-      })
-}, []);
+    client.fetch('*[_type == "dummyData"] | order(_createdAt) ').then(res => {
+      // Push your data to the static array
+      itemsToSend.push(...res);
+    });
+  }, []);
 
-  // Your action function returns two props {page, range}.
-  // 1 - Page is the current active page.
-  // 2 - Range is the range used in the Sanity.io selective query.
-  const action = (page, range) => {
-    // This function will be called on paginate, using Sanity.io selectives you query your new data and update your state
-    sanityClient.fetch(`*[_type == "dummyData"] | order(_createdAt) [${range}]`).then(res => setPaginationItems(res));
-  }
+  // Create an action which will be called on paginate
+  // This will return the current Page, Range of items and the Items to render
+  const action = (page, range, items) => {
+    console.log(page, range, items);
+    // Update State
+    setItems(items);
+  };
+
   return (
-    // In order for pagination to work you need to provide 3 props.
-    // 1 - Action which is stated prior.
-    // 2 - postsPerPage - how many posts you want per page
-    // 3 - postsLength - the length of your data that is going to be paginated. This can be done with Array.length
-    <Pagination paginationStyle={"default"} action={action} postsPerPage={postsPerPage} postsLength={dataLength} />;
-  )
-}
+    <div className="App">
+      <h1>
+        React Sanity Pagination Example{" "}
+        <span aria-label="🌵" role="img">
+          🌵
+        </span>
+      </h1>
+      // Map through your data
+      <div className="paginationContent">
+        {items.map((item, index) => {
+          return <div key={index}>{item.name}</div>;
+        })}
+      </div>
+      // Assign your props // Required props: action, items, postsPerPage
+      <Pagination
+        items={itemsToSend}
+        action={action}
+        postsPerPage={postsPerPage}
+      />
+    </div>
+  );
+};
 
 export default Example;
 ```
 
 ## Props
 
-| Name                        | Required | Type                      |
-| --------------------------- | -------- | ------------------------- |
-| action                      | Yes      | Function                  |
-| postsPerPage                | Yes      | Number                    |
-| postsLength                 | Yes      | Number                    |
-| paginationStyle             | No       | ("default", "activePage") |
-| nextButton                  | No       | Boolean                   |
-| nextButtonLabel             | No       | String                    |
-| prevButton                  | No       | Boolean                   |
-| prevButtonLabel             | No       | String                    |
-| jumpStartButton             | No       | Boolean                   |
-| jumpStartButtonLabel        | No       | String                    |
-| jumpEndButton               | No       | Boolean                   |
-| jumpEndButtonLabel          | No       | String                    |
-| jumpFiveForwardButton       | No       | Boolean                   |
-| jumpFiveForwardButtonLabel  | No       | String                    |
-| jumpTenForwardButton        | No       | Boolean                   |
-| jumpTenForwardButtonLabel   | No       | String                    |
-| jumpFiveBackwardButton      | No       | Boolean                   |
-| jumpFiveBackwardButtonLabel | No       | String                    |
-| jumpTenBackwardButton       | No       | Boolean                   |
-| jumpTenBackwardButtonLabel  | No       | String                    |
+| Name                        | Required | Type                                   |
+| --------------------------- | -------- | -------------------------------------- |
+| action                      | Yes      | Function                               |
+| postsPerPage                | Yes      | Number                                 |
+| postsLength                 | Yes      | Number                                 |
+| paginationStyle             | No       | ("default", "activePage", "centerMode) |
+| nextButton                  | No       | Boolean                                |
+| nextButtonLabel             | No       | String                                 |
+| prevButton                  | No       | Boolean                                |
+| prevButtonLabel             | No       | String                                 |
+| jumpStartButton             | No       | Boolean                                |
+| jumpStartButtonLabel        | No       | String                                 |
+| jumpEndButton               | No       | Boolean                                |
+| jumpEndButtonLabel          | No       | String                                 |
+| jumpFiveForwardButton       | No       | Boolean                                |
+| jumpFiveForwardButtonLabel  | No       | String                                 |
+| jumpTenForwardButton        | No       | Boolean                                |
+| jumpTenForwardButtonLabel   | No       | String                                 |
+| jumpFiveBackwardButton      | No       | Boolean                                |
+| jumpFiveBackwardButtonLabel | No       | String                                 |
+| jumpTenBackwardButton       | No       | Boolean                                |
+| jumpTenBackwardButtonLabel  | No       | String                                 |
 
 ## Pagination Styles
 
@@ -96,6 +109,10 @@ export default Example;
 ### activePage
 
 ![alt text](https://raw.githubusercontent.com/dane-brown/react-sanity-pagination/master/public/activePage.png)
+
+### centerMode
+
+![alt text](https://raw.githubusercontent.com/dane-brown/react-sanity-pagination/master/public/centerMode.png)
 
 ## License
 
