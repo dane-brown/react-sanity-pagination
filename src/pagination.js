@@ -28,17 +28,7 @@ function Pagination(props) {
 
       // Update Content
       setTimeout(() => {
-        const firstNumber = postsPerPage * (page - 1);
-        const secondNumber = firstNumber + postsPerPage;
-        const newRange = `${firstNumber}...${secondNumber}`;
-        setCurrentPage(page);
-        setRange(newRange);
-        if (page !== currentPage) {
-          updateURL(page);
-          props.action(page, newRange);
-        } else {
-          // Returning nothing because already on page 🕵️‍!
-        }
+        changePage(page);
       }, 300);
     }
   }, []);
