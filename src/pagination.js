@@ -80,16 +80,18 @@ function Pagination(props) {
         itemsToReturn.push(item);
       }
     });
-    setCurrentPage(page);
-    setRange(newRange);
-    if (page !== currentPage) {
-      updateURL(page);
-      // console.log(page, range, itemsToReturn);
-      props.action(page, newRange, itemsToReturn);
-    } else {
-      props.action(1, newRange, itemsToReturn);
-      // Returning nothing because already on page 🕵️‍!
-    }
+    Promise.all(itemsToReturn).then(() => {
+      setCurrentPage(page);
+      setRange(newRange);
+      if (page !== currentPage) {
+        updateURL(page);
+        // console.log(page, range, itemsToReturn);
+        props.action(page, newRange, itemsToReturn);
+      } else {
+        props.action(1, newRange, itemsToReturn);
+        // Returning nothing because already on page 🕵️‍!
+      }
+    });
   };
 
   // Assign Buttons
