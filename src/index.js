@@ -18,7 +18,7 @@ const App = () => {
 
   // Create your action which will be called on paginate
   const action = (page, range, items) => {
-    console.log(page, range, items);
+    console.log(`Page: ${page} 📃, Range: ${range} 🚀, Items: ${items} 🌀`);
     setItems(items);
   };
 
@@ -40,11 +40,14 @@ const App = () => {
 
       {/* Props required: action, postsPerPage, postsLength */}
       <Pagination
+        paginationStyle={"centerMode"}
         items={itemsToSend}
         action={action}
         postsPerPage={postsPerPage}
         nextButton={true}
         prevButton={true}
+        nextButtonLabel={"👉🏻"}
+        prevButtonLabel={"👈🏻"}
       />
     </div>
   );
