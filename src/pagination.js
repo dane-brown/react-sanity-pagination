@@ -11,24 +11,29 @@ import PaginateEnd from "./paginateEnd";
 import PaginateStart from "./paginateStart";
 
 function Pagination(props) {
+  // Called carbon copy because I never want this to change
+  const carbonCopy = props.items;
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = props.postsPerPage;
   const [range, setRange] = useState(`0...${postsPerPage}`);
   const buttons = [];
-  const postsLength = props.postsLength;
+  const postsLength = props.items.length;
   const pages = Math.ceil(postsLength / postsPerPage);
 
   // Set page if parameter is there
   useEffect(() => {
     const url = window.location.href;
     if (url.indexOf("?page=") !== -1) {
-      // console.log(url.indexOf("?page="));
       const param = url.substring(url.indexOf("?page="));
       const page = Number(param.replace("?page=", ""));
 
       // Update Content
       setTimeout(() => {
         changePage(page);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        changePage(1);
       }, 300);
     }
   }, []);
@@ -64,15 +69,25 @@ function Pagination(props) {
   };
 
   const changePage = (page, range) => {
+    // Calculating Range
     const firstNumber = postsPerPage * (page - 1);
     const secondNumber = firstNumber + postsPerPage;
     const newRange = `${firstNumber}...${secondNumber}`;
+    // Returning part of object that we need
+    let itemsToReturn = [];
+    carbonCopy.forEach((item, index) => {
+      if (index >= firstNumber && index <= secondNumber - 1) {
+        itemsToReturn.push(item);
+      }
+    });
     setCurrentPage(page);
     setRange(newRange);
     if (page !== currentPage) {
       updateURL(page);
-      props.action(page, newRange);
+      // console.log(page, range, itemsToReturn);
+      props.action(page, newRange, itemsToReturn);
     } else {
+      props.action(1, newRange, itemsToReturn);
       // Returning nothing because already on page 🕵️‍!
     }
   };
