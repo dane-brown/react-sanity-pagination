@@ -39,7 +39,6 @@ function Pagination(props) {
         } else {
           // Returning nothing because already on page 🕵️‍!
         }
-        console.log("Fetching initial pagination");
       }, 300);
     }
   }, []);
