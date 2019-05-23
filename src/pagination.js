@@ -24,9 +24,23 @@ function Pagination(props) {
     if (url.indexOf("?page=") !== -1) {
       // console.log(url.indexOf("?page="));
       const param = url.substring(url.indexOf("?page="));
-      const page = param.replace("?page=", "");
-      setCurrentPage(page);
-      changePage(Number(page));
+      const page = Number(param.replace("?page=", ""));
+
+      // Update Content
+      setTimeout(() => {
+        const firstNumber = postsPerPage * (page - 1);
+        const secondNumber = firstNumber + postsPerPage;
+        const newRange = `${firstNumber}...${secondNumber}`;
+        setCurrentPage(page);
+        setRange(newRange);
+        if (page !== currentPage) {
+          updateURL(page);
+          props.action(page, newRange);
+        } else {
+          // Returning nothing because already on page 🕵️‍!
+        }
+        console.log("Fetching initial pagination");
+      }, 300);
     }
   }, []);
 
