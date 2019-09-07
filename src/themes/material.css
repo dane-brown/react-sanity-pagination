@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+.pagePagination li {
+  display: inline-block;
+}
+
 .pagePagination button {
   display: inline-block;
 }

@@ -4,13 +4,15 @@ const PaginateEnd = props => {
   return (
     <React.Fragment>
       {props.jumpEndButton === true ? (
-        <button
-          className="paginateButton paginationEnd"
-          disabled={props.currentPage === props.pages ? "disabled" : ""}
-          onClick={() => props.changePage(props.pages)}
-        >
-          {props.jumpEndButtonLabel ? props.jumpEndButtonLabel : "End"}
-        </button>
+        <li>
+          <button
+            className="paginateButton paginationEnd"
+            disabled={props.currentPage === props.pages ? "disabled" : ""}
+            onClick={() => props.changePage(props.pages)}
+          >
+            {props.jumpEndButtonLabel ? props.jumpEndButtonLabel : "End"}
+          </button>
+        </li>
       ) : (
         ""
       )}
