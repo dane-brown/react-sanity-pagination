@@ -69,12 +69,14 @@ function Pagination(props) {
           {page === currentPage ||
           page === currentPage - 1 ||
           page === currentPage + 1 ? (
-            <button
-              className={page === currentPage ? "active" : ""}
-              onClick={() => changePage(page, range)}
-            >
-              {page}
-            </button>
+            <li>
+              <button
+                className={page === currentPage ? "active" : ""}
+                onClick={() => changePage(page, range)}
+              >
+                {page}
+              </button>
+            </li>
           ) : (
             ""
           )}
@@ -83,12 +85,14 @@ function Pagination(props) {
     } else {
       return (
         <React.Fragment>
-          <button
-            className={page === currentPage ? "active" : ""}
-            onClick={() => changePage(page, range)}
-          >
-            {page}
-          </button>
+          <li>
+            <button
+              className={page === currentPage ? "active" : ""}
+              onClick={() => changePage(page, range)}
+            >
+              {page}
+            </button>
+          </li>
         </React.Fragment>
       );
     }
