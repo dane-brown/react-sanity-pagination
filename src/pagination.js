@@ -139,7 +139,7 @@ function Pagination(props) {
   return (
     <React.Fragment>
       {postsLength > 1 ? (
-        <ul className="pagePagination">
+        <ul className={['pagePagination', props.className]}>
           <PaginateStart
             jumpStartButton={props.jumpStartButton}
             jumpStartButtonLabel={props.jumpStartButtonLabel}
@@ -224,7 +224,8 @@ Pagination.propTypes = {
   jumpTenBackwardButton: PropTypes.bool,
   jumpTenBackwardButtonLabel: PropTypes.string,
   jumpEndButton: PropTypes.bool,
-  jumpEndButtonLabel: PropTypes.string
+  jumpEndButtonLabel: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default Pagination;
