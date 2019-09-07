@@ -49,12 +49,14 @@ function Pagination(props) {
         <React.Fragment>
           <React.Fragment>
             {page === currentPage ? (
-              <button
-                className={page === currentPage ? "active" : ""}
-                onClick={() => changePage(page, range)}
-              >
-                {page}
-              </button>
+              <li>
+                <button
+                  className={page === currentPage ? "active" : ""}
+                  onClick={() => changePage(page, range)}
+                >
+                  {page}
+                </button>
+              </li>
             ) : (
               ""
             )}
