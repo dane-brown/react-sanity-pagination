@@ -20,7 +20,7 @@ npm install --save react-sanity-pagination
 ```jsx
 import React, { useState, useEffect } from "react";
 // Import Pagination
-import Pagination from "./pagination";
+import Pagination from "react-sanity-pagination";
 // Import Querying tool
 import client from "./sanity";
 
@@ -99,6 +99,7 @@ export default Example;
 | jumpFiveBackwardButtonLabel | No       | String                                 |
 | jumpTenBackwardButton       | No       | Boolean                                |
 | jumpTenBackwardButtonLabel  | No       | String                                 |
+| className  | No       | String                                 |
 
 ## Pagination Styles
 
