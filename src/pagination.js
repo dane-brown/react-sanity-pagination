@@ -224,7 +224,8 @@ Pagination.propTypes = {
   jumpTenBackwardButton: PropTypes.bool,
   jumpTenBackwardButtonLabel: PropTypes.string,
   jumpEndButton: PropTypes.bool,
-  jumpEndButtonLabel: PropTypes.string
+  jumpEndButtonLabel: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Pagination;
